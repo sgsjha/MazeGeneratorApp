@@ -11,23 +11,35 @@ import Foundation
 
 
 struct ContentView: View {
-    @StateObject private var maze = Maze(rows: 11, cols: 11)
+    @StateObject private var maze = Maze(rows: 21, cols: 21)
 
     var body: some View {
-        VStack {
-            MazeView(maze: maze)
+        
+        ZStack{
+            Color.gray.ignoresSafeArea().opacity(0.4)
+            
+            VStack {
+                Spacer().frame(width: 100, height: 50)
+                Text("MAZE GENERATOR").font(.largeTitle).bold()
+                Spacer().frame(width: 100, height: 50)
+                
+                Text("Start").frame(maxWidth: .infinity, alignment: .leading).padding(.leading).font(.title)
+                MazeView(maze: maze).padding()
+                Text("Finish").frame(maxWidth: .infinity, alignment: .trailing).padding(.trailing).font(.title)
+                Button(action: {
+                    maze.generateMaze()
+                }) {
+                    Text("Generate Maze").font(.title2).bold()
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(30)
+                }
                 .padding()
-            Button(action: {
-                maze.generateMaze()
-            }) {
-                Text("Generate Maze")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
             }
-            .padding()
         }
+        
+       
     }
 }
 
@@ -44,9 +56,21 @@ struct MazeView: View {
                 ForEach(0..<maze.grid.count, id: \.self) { row in
                     HStack(spacing: 0) {
                         ForEach(0..<maze.grid[row].count, id: \.self) { col in
-                            Rectangle()
-                                .foregroundColor(maze.grid[row][col] == 1 ? .black : .white)
-                                .frame(width: cellWidth, height: cellHeight)
+                            if (row, col) == (0, 0) {
+                                Rectangle()
+                                    .foregroundColor(.green)
+                                    .frame(width: cellWidth, height: cellHeight)
+                            } 
+                            else if (row, col) == (maze.grid.count - 1, maze.grid[0].count - 1) {
+                                Rectangle()
+                                    .foregroundColor(.red)
+                                    .frame(width: cellWidth, height: cellHeight)
+                            } 
+                            else {
+                                Rectangle()
+                                    .foregroundColor(maze.grid[row][col] == 1 ? .black : .white)
+                                    .frame(width: cellWidth, height: cellHeight)
+                            }
                         }
                     }
                 }

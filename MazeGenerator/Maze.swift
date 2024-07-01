@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 class Maze: ObservableObject {
     @Published var grid: [[Int]]
     private var rows: Int
