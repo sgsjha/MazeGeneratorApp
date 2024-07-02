@@ -27,9 +27,6 @@ cd maze-generator`
 
 2. Open the project in Xcode:
 
-`bash
-open MazeGenerator.xcodeproj`
-
 3. Build and run the project on your simulator or connected device.
 
 **OR**
