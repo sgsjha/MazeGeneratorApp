@@ -35,4 +35,4 @@ open MazeGenerator.xcodeproj`
 **OR**
 
 1. Download uploaded zip file, this is done incase of corruption of xCode Project.
-
+2. Build and run the project on your simulator or connected device.
