@@ -21,8 +21,7 @@ Maze Generator is a simple iOS application that generates random mazes. This app
 1. Clone the repository to your local machine:
 
 `bash
-git clone https://github.com/yourusername/maze-generator.git
-cd maze-generator`
+git clone https://github.com/yourusername/maze-generator.git`
 
 2. Open the project in Xcode:
 
